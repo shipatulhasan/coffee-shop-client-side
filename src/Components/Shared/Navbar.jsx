@@ -120,7 +120,7 @@ const Navbar = () => {
               {user && user?.uid ? (
                 <button
                   onClick={handleSignOut}
-                  className="flex items-center p-3 text-sm text-slate-100 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-slate-100 mx-6 lg:mr-2 lg:ml-0"
+                  className="flex items-center p-3 text-sm text-slate-100 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:text-[#C7A17A] dark:hover:bg-gray-700 dark:hover:text-slate-100 mx-6 lg:mr-2 lg:ml-0"
                 >
                   <GoSignOut className="text-xl text-slate-100" />
 
@@ -136,7 +136,7 @@ const Navbar = () => {
               )}
             </div>
 
-            <div className="flex items-center mt-4 lg:mt-0 gap-4 ">
+            {/* <div className="flex items-center mt-4 lg:mt-0 gap-4 ">
               {user && user?.uid && (
                 <Link
                   to="/profile"
@@ -154,7 +154,7 @@ const Navbar = () => {
                   )}
                 </Link>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <>
       <section
-        className="relative min-h-[400px] md:min-h-[400px] lg:min-h-screen flex items-center justify-start bg-center bg-no-repeat bg-cover"
+        className="relative min-h-[400px]  flex items-center justify-start bg-center bg-no-repeat bg-cover"
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="w-full h-full absolute top-0 bg-gradient-to-r from-black to-transparent opacity-60" />

@@ -3,6 +3,8 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import Login from "../Pages/Login";
+import Registration from "../Pages/Registration";
+import Menu from "../Pages/Menu";
 
 const router = createBrowserRouter([
   {
@@ -11,19 +13,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
+      },
+      {
+        path: "/home",
+        element: <Home />,
       },
       {
         path: "/login",
         element: <Login />,
       },
-      //   {
-      //     path: "/register",
-      //     element: <Register></Register>,
-      //   },
+      {
+        path: "/sign-up",
+        element: <Registration />,
+      },
       {
         path: "/menu",
-        element: <PrivateRoute>{/* <Menu></Menu> */}</PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Menu />
+          </PrivateRoute>
+        ),
         loader: () =>
           fetch("https://coffee-shop-server-chi.vercel.app/coffees"),
       },

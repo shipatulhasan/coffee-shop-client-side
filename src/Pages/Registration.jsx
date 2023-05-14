@@ -9,32 +9,39 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../Components/Shared/Loader";
 import { AuthContext } from "../Providers/AuthProvider";
 
-const Login = () => {
-  const { signInUser, googleLogin, loading } = useContext(AuthContext);
+const Registration = () => {
+  const { createUser, updateUserData, googleLogin, loading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
-  const handleLogin = (event) => {
+  const handleRegister = (event) => {
     setError("");
     event.preventDefault();
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // const url = form.url.value;
+    console.log(name, email, password);
 
-    const from = location.state?.from?.pathname || "/";
-
-    signInUser(email, password)
+    if (password.length < 6) {
+      return setError("Password should have at least six character");
+    }
+    createUser(email, password)
       .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
+        const from = location.state?.from?.pathname || "/";
+        const createUser = result.user;
         navigate(from, { replace: true });
+        console.log(createUser);
+        updateUserData(result.user, name);
         setError("");
-        toast.success("User successfully loggedin");
+        form.reset();
+        toast.success("Successfully Registered");
       })
       .catch((error) => {
-        setError("invalid email and password");
+        setError(error.message);
       });
   };
 
@@ -62,7 +69,7 @@ const Login = () => {
 
           <div className="w-full max-w-md p-8 space-y-3 bg-black border-[1px] border-[#C7A17A] dark:bg-gray-900 dark:text-gray-100 bg-opacity-40">
             <h1 className="text-4xl font-bold text-center text-khaki uppercase">
-              Sign In
+              Sign Up
             </h1>
 
             <p className="text-red-600 font-semibold text-xl py-4">{error}</p>
@@ -95,13 +102,23 @@ const Login = () => {
               </div>
 
               <span className="w-5/6 px-4 py-3 font-bold uppercase text-center">
-                Sign in with Google
+                Sign up with Google
               </span>
             </button>
             <form
-              onSubmit={handleLogin}
+              onSubmit={handleRegister}
               className="space-y-6 ng-untouched ng-pristine ng-valid"
             >
+              <div className="space-y-1 text-base mt-8">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Your name"
+                  required
+                  className="w-full px-4 py-3 bg-slate-200 bg-opacity-20 focus:outline-none text-slate-100"
+                />
+              </div>
               <div className="space-y-1 text-base mt-8">
                 <input
                   type="email"
@@ -133,24 +150,33 @@ const Login = () => {
                   <p>Forgot Password?</p>
                 </div>
               </div>
+              {/* <div className="space-y-1 text-base mt-8">
+                <input
+                  type="text"
+                  name="url"
+                  id="url"
+                  placeholder="Your photo url"
+                  className="w-full px-4 py-3 bg-slate-200 bg-opacity-20 focus:outline-none text-slate-100"
+                />
+              </div> */}
 
               <button
                 type="submit"
                 className="border border-khaki py-3 text-white font-bold tracking-widest uppercase text-base mt-6 bg-slate-100 bg-opacity-20 hover:bg-khaki w-full"
               >
-                {loading ? <Loader disabled /> : "Login"}{" "}
+                {loading ? <Loader disabled /> : "Sign up"}{" "}
               </button>
             </form>
 
             <p className="text-sm text-center sm:px-6 text-slate-200">
-              {`Don't have an account ?`}
+              {`Already have an account? Please`}
               <Link
                 rel="noopener noreferrer"
-                to="/sign-up"
+                to="/signup"
                 className="underline text-slate-100 hover:text-khaki"
               >
                 {" "}
-                Sign up
+                Sign in
               </Link>
             </p>
           </div>
@@ -163,4 +189,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;
