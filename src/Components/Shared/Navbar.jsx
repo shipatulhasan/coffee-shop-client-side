@@ -32,7 +32,7 @@ const Navbar = () => {
           <li
             className={`${
               isActive ? "text-[#C7A17A]" : "text-white"
-            } text-white px-3 py-1  list-none lg:mr-2 transition-colors duration-300 transform hover:text-[#C7A17A]`}
+            } text-white px-3 py-1  list-none mx-6 lg:mr-2 lg:ml-0 transition-colors duration-300 transform hover:text-[#C7A17A]`}
           >
             Home
           </li>
@@ -43,7 +43,7 @@ const Navbar = () => {
           <li
             className={`${
               isActive ? "text-[#C7A17A]" : "text-white"
-            } text-white px-3 py-1  list-none lg:mr-2 transition-colors duration-300 transform hover:text-[#C7A17A]`}
+            } text-white px-3 py-1  list-none mx-6 lg:mr-2 lg:ml-0 transition-colors duration-300 transform hover:text-[#C7A17A]`}
           >
             Menu
           </li>
@@ -112,7 +112,7 @@ const Navbar = () => {
               isOpen
                 ? "translate-x-0 opacity-100 "
                 : "opacity-0 -translate-x-full"
-            } absolute inset-x-0 z-50 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}
+            } absolute inset-x-0 z-50 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-black dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}
           >
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-10">
               {menuList}
@@ -122,7 +122,7 @@ const Navbar = () => {
                   onClick={handleSignOut}
                   className="flex items-center p-3 text-sm text-slate-100 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:text-[#C7A17A] dark:hover:bg-gray-700 dark:hover:text-slate-100 mx-6 lg:mr-2 lg:ml-0"
                 >
-                  <GoSignOut className="text-xl text-slate-100" />
+                  {/* <GoSignOut className="text-xl text-slate-100" /> */}
 
                   <span className="mx-1">Sign Out</span>
                 </button>

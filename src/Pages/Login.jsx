@@ -10,18 +10,19 @@ import Loader from "../Components/Shared/Loader";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
-  const { signInUser, googleLogin, loading } = useContext(AuthContext);
+  const { signInUser, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleLogin = (event) => {
     setError("");
+    setLoading(true);
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     const from = location.state?.from?.pathname || "/";
 
@@ -35,7 +36,8 @@ const Login = () => {
       })
       .catch((error) => {
         setError("invalid email and password");
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const handleGoogleLogin = () => {
@@ -94,7 +96,7 @@ const Login = () => {
                 </svg>
               </div>
 
-              <span className="w-5/6 px-4 py-3 font-bold uppercase text-center">
+              <span className="w-5/6 px-4 py-3 font-bold uppercase text-center text-xs md:text-base">
                 Sign in with Google
               </span>
             </button>
@@ -136,7 +138,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="border border-khaki py-3 text-white font-bold tracking-widest uppercase text-base mt-6 bg-slate-100 bg-opacity-20 hover:bg-khaki w-full"
+                className="border border-khaki py-3 text-white font-bold tracking-widest uppercase  mt-6 bg-slate-100 bg-opacity-20 hover:bg-khaki w-full text-xs md:text-base"
               >
                 {loading ? <Loader disabled /> : "Login"}{" "}
               </button>
